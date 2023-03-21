@@ -26,6 +26,7 @@ namespace Kr3G
 
 
 
+
         public Presenter(IMainForm mainForm, ICalculator calculator, IMessageService messageService, IValidator validator, IFileManager fileManager,IDataExport dataExport)
         {
             this.mainForm = mainForm;
@@ -37,21 +38,27 @@ namespace Kr3G
 
 
 
-            mainForm.TryDraw += new EventHandler(MainForm_TryDraw);
-            mainForm.Clear += new EventHandler(MainForm_Clear);
-            mainForm.Removelast += new EventHandler(MainForm_RemoveLast);
-            mainForm.OpenFile += new EventHandler(MainForm_OpenFile);
-            mainForm.SaveInitialData += new EventHandler(MainForm_SaveInitialData);
-            mainForm.SaveData += new EventHandler(MainForm_SaveData);
+            mainForm.TryDraw += MainForm_TryDraw;
+            mainForm.Clear += MainForm_Clear;
+            mainForm.Removelast += MainForm_RemoveLast;
+            mainForm.OpenFile += MainForm_OpenFile;
+            mainForm.SaveInitialData += MainForm_SaveInitialData;
+            mainForm.SaveData += MainForm_SaveData;
+            mainForm.NoData += MainForm_NoData;
+           
+        }
+
+        private void Validator_ValidationError(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void MainForm_SaveData(object? sender, EventArgs e)
         {
-            if (mainForm.FilePath == "")
-                return;
+            
             try
             {
-                dataExport.ExportData(dataHolders.ToArray(), graphDatas.ToArray(), Base64ToImage(mainForm.Image), mainForm.FilePath);
+                dataExport.ExportData(dataHolders.ToArray(), graphDatas.ToArray(), mainForm.Image, mainForm.FilePath);
             }
             catch (Exception)
             {
@@ -68,16 +75,14 @@ namespace Kr3G
             {
                 tempData += item.GetStringData() + Environment.NewLine;
             }
-            if (mainForm.FilePath != "")
-                fileManager.SaveInitialData(tempData,mainForm.FilePath );
+           
+            fileManager.SaveInitialData(tempData,mainForm.FilePath );
         }
          
         //TODO сделать нормально
         private void MainForm_TryDraw(object? sender, EventArgs e)
         {
-
             Draw();
-
         }
 
         private void MainForm_Clear(object? sender, EventArgs e)
@@ -86,23 +91,20 @@ namespace Kr3G
             dataHolders.Clear();
             graphDatas.Clear();
         }
-       private void MainForm_RemoveLast(object? sender, EventArgs e)
+        private void MainForm_RemoveLast(object? sender, EventArgs e)
         {
-            if (dataHolders.Count > 0)
-            {
-                dataHolders.RemoveAt(dataHolders.Count - 1);
-                graphDatas.RemoveAt(graphDatas.Count - 1);
-            }
-            else
-            {
-                messageService.ShowMessage("Сharts missing!!");
-            }
+
+            dataHolders.RemoveAt(dataHolders.Count - 1);
+            graphDatas.RemoveAt(graphDatas.Count - 1);
+
+            
+
+
+            
         }
 
         private void MainForm_OpenFile(object? sender, EventArgs e)
         {
-            if (mainForm.FilePath == "")
-                return;
             string[] fileValue = fileManager.OpenFile(mainForm.FilePath);
             for (int i = 0; i < fileValue.Length; i++)
             {
@@ -125,6 +127,11 @@ namespace Kr3G
             
 
            
+        }
+
+        private void MainForm_NoData(object? sender, EventArgs e)
+        {
+            messageService.ShowMessage("Сharts missing!!");
         }
 
         private void Draw()

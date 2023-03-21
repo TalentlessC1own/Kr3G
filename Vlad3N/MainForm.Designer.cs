@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -298,5 +299,6 @@
         private TextBox textBoxLeftBorder;
         private ToolStripMenuItem removeLastToolStripMenuItem;
         private ToolStripMenuItem dataToolStripMenuItem;
+       
     }
 }

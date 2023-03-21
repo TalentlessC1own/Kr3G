@@ -64,7 +64,7 @@
   <data name="formula.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAUoAAAA+CAYAAABN7VJmAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAF6VJREFUeF7t3eOTbMnWBvD7L8yXiZkPE+MYxphnbNu2bdu2bdu2bdu2kW/8MiZv
+        vQAADr0BR/uQrQAAF6VJREFUeF7t3eOTbMnWBvD7L8yXiZkPE+MYxphnbNu2bdu2bdu2bdu2kW/8MiZv
         1Nt3F7qmuqqrez0RGX26a9feiZXPYu7znxQIBAKBhgiiDAQCgSYIogwEAoEmCKIMBAKBJgiiDAQCgSYI
         ogwEAoEmCKIMBAKBJgiiDAQCgSYIogwEAoEmCKIMBPoMf//9d/r999/T999/n7755ptog2zfffdd+vPP
         P/+ZzdYQRBkYFP7666/022+/5UbYbFp/++OPP/77ezfheZr+/PLLL11/fi/w888/p1dffTXddttt6Zpr
@@ -168,4 +168,16 @@
         EAg0REr/B5lGkKKtno4sAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="leftBorderErrorProvaider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>132, 17</value>
+  </metadata>
+  <metadata name="rightBorderErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>262, 17</value>
+  </metadata>
+  <metadata name="stepErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>392, 17</value>
+  </metadata>
+  <metadata name="rErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>522, 17</value>
+  </metadata>
 </root>

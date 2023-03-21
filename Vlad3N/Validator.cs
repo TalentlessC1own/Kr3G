@@ -12,11 +12,18 @@ namespace Kr3G
         string PreValidation(DataHolder<string> dataHolder);
         bool PostValidation(double[] array);
 
+
+
+
         bool AccetableRange(DataHolder<double> dataHolder);
+
+       
       
     }
     public  class Validator : IValidator
     {
+
+
         private bool ValidateData(string value)
         {
             return double.TryParse(value,out double result);
@@ -67,6 +74,8 @@ namespace Kr3G
                 return false;
             return true;
         }
+
+      
 
         
     }

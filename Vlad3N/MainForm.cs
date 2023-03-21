@@ -12,7 +12,7 @@ namespace Kr3G
 
         string FilePath { get; }
 
-        string Image { get; }
+        Image Image { get; }
 
         void Draw(GraphData graphData, string _label);
 
@@ -24,13 +24,13 @@ namespace Kr3G
         event EventHandler OpenFile;
         event EventHandler SaveInitialData;
         event EventHandler SaveData;
+        event EventHandler NoData;
 
 
     }
 
     public partial class MainForm : Form, IMainForm
     {
-        int scatterCounter = 0;
         [Required]
         public string LeftBorder
         {
@@ -78,11 +78,16 @@ namespace Kr3G
             private set;
         }
 
-        public string Image 
+        public Image Image 
         {
             get
             {
-                return chart.Plot.GetImageBase64();
+                using (var ms = new MemoryStream(chart.Plot.GetImageBytes(), 0, chart.Plot.GetImageBytes().Length))
+                {
+                    Image image = Image.FromStream(ms, true);
+
+                    return image;
+                }
             }
 
         }
@@ -108,6 +113,8 @@ namespace Kr3G
 
         public event EventHandler? SaveData;
 
+        public event EventHandler? NoData;
+
         public void ClearFields()
         {
             textBoxLeftBorder.Text = "";
@@ -119,7 +126,7 @@ namespace Kr3G
         }
         private void drawToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (TryDraw != null) TryDraw(this, EventArgs.Empty);
+            TryDraw?.Invoke(this, EventArgs.Empty);
 
 
         }
@@ -128,19 +135,23 @@ namespace Kr3G
         {
             chart.Plot.Clear();
             ClearFields();
-            scatterCounter = 0;
             chart.Refresh();
-            if (Clear != null) Clear(this, EventArgs.Empty);
+            Clear?.Invoke(this, EventArgs.Empty);
         }
         private void removeLastToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (scatterCounter > 0)
+            if (chart.Plot.GetPlottables().Length > 0)
             {
-                chart.Plot.RemoveAt(scatterCounter - 1);
-                scatterCounter--;
+
+                chart.Plot.RemoveAt(chart.Plot.GetPlottables().Length - 1);
                 chart.Refresh();
+
+                Removelast?.Invoke(this, EventArgs.Empty);
             }
-            if(Removelast != null) Removelast(this, EventArgs.Empty);
+            else
+            {
+                NoData?.Invoke(this, EventArgs.Empty); 
+            }
            
         }
 
@@ -148,18 +159,15 @@ namespace Kr3G
         {
             var scatter = chart.Plot.AddScatter(graphData.xs, graphData.ys, label: _label) ;
 
-            scatterCounter++;
             chart.Plot.Legend();
 
-
             chart.Refresh();
-            
-          
            
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Text file|*.txt";
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -170,12 +178,20 @@ namespace Kr3G
             {
                 FilePath = "";
             }
-            if (OpenFile != null ) OpenFile(this, EventArgs.Empty);
+           
+
+            if (FilePath != "") OpenFile?.Invoke(this, EventArgs.Empty); 
         }
 
         private void initialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
+            if (chart.Plot.GetPlottables().Length == 0)
+            {
+                NoData?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.OverwritePrompt = true;
             dialog.Filter = "Text file|*.txt";
@@ -188,11 +204,16 @@ namespace Kr3G
                 FilePath = "";
             }
 
-            if (SaveInitialData != null) SaveInitialData(this, EventArgs.Empty);
+            if (FilePath != "") SaveInitialData?.Invoke(this, EventArgs.Empty);
         }
 
         private void dataToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (chart.Plot.GetPlottables().Length == 0)
+            {
+                NoData?.Invoke(this, EventArgs.Empty);
+                return;
+            }
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.OverwritePrompt = true;
             dialog.Filter = "Xlsx|*.xlsx";
@@ -204,8 +225,10 @@ namespace Kr3G
             {
                 FilePath = "";
             }
-            if (SaveData != null) SaveData(this, EventArgs.Empty);
+            if (FilePath != "") SaveData?.Invoke(this, EventArgs.Empty);
         }
+
+       
     }
 
  }
