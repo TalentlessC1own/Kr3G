@@ -1,3 +1,6 @@
+using Autofac;
+using System.Drawing.Text;
+
 namespace Kr3G
 {
     internal static class Program
@@ -12,16 +15,21 @@ namespace Kr3G
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            MainForm mainForm = new MainForm();
-            MessageService messageService = new MessageService();
-            Calculator calculator = new Calculator();
-            Validator validator = new Validator();
-            FileManager fileManager = new FileManager();
-            ExcelExport excelExport = new ExcelExport();
+            using (var scope = PrepareContainer().BeginLifetimeScope()) 
+            {
+                var presenter = scope.Resolve<IPresenter>();
+                presenter.Run();
+            }
 
-            Presenter presenter = new Presenter(mainForm, calculator, messageService, validator,fileManager,excelExport);
+            
 
-            Application.Run(mainForm);
+            
+        }
+        private static IContainer PrepareContainer()
+        {
+            var builder = new ContainerBuilder();
+            ContainerPreparer.Prepare(builder);
+            return builder.Build();
         }
     }
 }

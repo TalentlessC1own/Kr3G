@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Kr3G
 {
-    public class Presenter
+
+    public interface IPresenter
+    {
+        void Run();
+    }
+    public class Presenter:IPresenter
     {
         const int MAX_CHARTS_COUNT = 5;
         const int EXPECTED_AMOUNT_DATA = 4;
@@ -48,9 +53,9 @@ namespace Kr3G
            
         }
 
-        private void Validator_ValidationError(object? sender, EventArgs e)
+       public void Run()
         {
-            throw new NotImplementedException();
+            mainForm.Show();
         }
 
         private void MainForm_SaveData(object? sender, EventArgs e)
@@ -60,9 +65,9 @@ namespace Kr3G
             {
                 dataExport.ExportData(dataHolders.ToArray(), graphDatas.ToArray(), mainForm.Image, mainForm.FilePath);
             }
-            catch (Exception)
+            catch (Exception exer)
             {
-
+                //nlog
                 messageService.ShowError("Close the file before changing!");
             }
                 
@@ -176,16 +181,7 @@ namespace Kr3G
         }
 
 
-        private Image Base64ToImage(string base64String)
-        {
-            byte[] imageBytes = Convert.FromBase64String(base64String);
-
-            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
-            {
-                Image image = Image.FromStream(ms, true);
-
-                return image;
-            }
-        }
+       
+        
     }
 }

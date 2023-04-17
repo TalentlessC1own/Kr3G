@@ -3,7 +3,7 @@ using System.Security.Policy;
 
 namespace Kr3G
 {
-    public interface IMainForm
+    public interface IMainForm:IView
     { 
         string LeftBorder { get; set; }
         string RightBorder { get; set; }
@@ -17,6 +17,7 @@ namespace Kr3G
         void Draw(GraphData graphData, string _label);
 
         void ClearFields();
+
 
         event EventHandler TryDraw;
         event EventHandler Clear;
@@ -101,6 +102,8 @@ namespace Kr3G
 
         }
 
+
+
         public event EventHandler? TryDraw;
         
         public event EventHandler? Clear;
@@ -115,6 +118,10 @@ namespace Kr3G
 
         public event EventHandler? NoData;
 
+        public new void Show()
+        {
+            Application.Run(this);
+        }
         public void ClearFields()
         {
             textBoxLeftBorder.Text = "";
@@ -180,6 +187,7 @@ namespace Kr3G
             }
            
 
+           
             if (FilePath != "") OpenFile?.Invoke(this, EventArgs.Empty); 
         }
 
@@ -228,7 +236,10 @@ namespace Kr3G
             if (FilePath != "") SaveData?.Invoke(this, EventArgs.Empty);
         }
 
-       
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 
  }
