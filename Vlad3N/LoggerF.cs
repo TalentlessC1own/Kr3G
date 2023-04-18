@@ -7,7 +7,7 @@ using NLog;
 
 namespace Kr3G
 {
-    public static  class LoggerF
+    public static class LoggerF
     {
         public static Logger logger { get; } = LogManager.GetCurrentClassLogger();
         

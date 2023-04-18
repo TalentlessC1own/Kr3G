@@ -1,10 +1,13 @@
 using Autofac;
+using NLog;
 using System.Drawing.Text;
 
 namespace Kr3G
 {
     internal static class Program
     {
+
+       
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -14,7 +17,7 @@ namespace Kr3G
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
+            LoggerF.logger.Error("1231234", "2311234");
             using (var scope = PrepareContainer().BeginLifetimeScope()) 
             {
                 var presenter = scope.Resolve<IPresenter>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,14 +47,15 @@ namespace Kr3G
             mainForm.TryDraw += MainForm_TryDraw;
             mainForm.Clear += MainForm_Clear;
             mainForm.Removelast += MainForm_RemoveLast;
-            mainForm.OpenFile += MainForm_OpenFile;
             mainForm.SaveInitialData += MainForm_SaveInitialData;
             mainForm.SaveData += MainForm_SaveData;
             mainForm.NoData += MainForm_NoData;
-           
+
+            
+
         }
 
-       public void Run()
+        public void Run()
         {
             mainForm.Show();
         }
