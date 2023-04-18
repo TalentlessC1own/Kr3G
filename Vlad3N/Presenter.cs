@@ -65,9 +65,10 @@ namespace Kr3G
             {
                 dataExport.ExportData(dataHolders.ToArray(), graphDatas.ToArray(), mainForm.Image, mainForm.FilePath);
             }
-            catch (Exception exer)
+            catch (Exception ex)
             {
-                //nlog
+                LoggerF.logger.Error(ex);
+
                 messageService.ShowError("Close the file before changing!");
             }
                 
