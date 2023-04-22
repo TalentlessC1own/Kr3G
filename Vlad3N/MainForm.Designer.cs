@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,24 +51,29 @@
             this.labelStep = new System.Windows.Forms.Label();
             this.labelR = new System.Windows.Forms.Label();
             this.labelLeftBorder = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.themeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.formula)).BeginInit();
             this.parametrs.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chartToolStripMenuItem,
             this.fileToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1143, 35);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.exitToolStripMenuItem,
+            this.settingsToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip.Size = new System.Drawing.Size(1143, 35);
+            this.menuStrip.TabIndex = 0;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // chartToolStripMenuItem
             // 
@@ -267,6 +272,34 @@
             this.labelLeftBorder.TabIndex = 4;
             this.labelLeftBorder.Text = "left border ";
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textColorToolStripMenuItem,
+            this.themeColorToolStripMenuItem,
+            this.logPathToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // textColorToolStripMenuItem
+            // 
+            this.textColorToolStripMenuItem.Name = "textColorToolStripMenuItem";
+            this.textColorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.textColorToolStripMenuItem.Text = "Text Color";
+            // 
+            // themeColorToolStripMenuItem
+            // 
+            this.themeColorToolStripMenuItem.Name = "themeColorToolStripMenuItem";
+            this.themeColorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.themeColorToolStripMenuItem.Text = "Theme Color";
+            // 
+            // logPathToolStripMenuItem
+            // 
+            this.logPathToolStripMenuItem.Name = "logPathToolStripMenuItem";
+            this.logPathToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.logPathToolStripMenuItem.Text = "Log Path";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -277,8 +310,8 @@
             this.Controls.Add(this.parametrs);
             this.Controls.Add(this.chart);
             this.Controls.Add(this.formula);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximumSize = new System.Drawing.Size(1428561, 16666627);
             this.MdiChildrenMinimizedAnchorBottom = false;
@@ -288,8 +321,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.formula)).EndInit();
             this.parametrs.ResumeLayout(false);
             this.parametrs.PerformLayout();
@@ -300,7 +333,7 @@
 
         #endregion
 
-        private MenuStrip menuStrip1;
+        private MenuStrip menuStrip;
         private ToolStripMenuItem chartToolStripMenuItem;
         private ToolStripMenuItem drawToolStripMenuItem;
         private ToolStripMenuItem clearToolStripMenuItem;
@@ -322,6 +355,9 @@
         private TextBox textBoxLeftBorder;
         private ToolStripMenuItem removeLastToolStripMenuItem;
         private ToolStripMenuItem dataToolStripMenuItem;
-       
+        private ToolStripMenuItem settingsToolStripMenuItem;
+        private ToolStripMenuItem textColorToolStripMenuItem;
+        private ToolStripMenuItem themeColorToolStripMenuItem;
+        private ToolStripMenuItem logPathToolStripMenuItem;
     }
 }

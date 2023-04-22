@@ -217,6 +217,7 @@ namespace Kr3G
 
         private void dataToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
             if (chart.Plot.GetPlottables().Length == 0)
             {
                 NoData?.Invoke(this, EventArgs.Empty);
@@ -238,7 +239,7 @@ namespace Kr3G
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            chart.Plot.AxisZoom(0, 0, 1500, 15000);
         }
     }
 
