@@ -8,14 +8,15 @@ using System.Configuration;
 
 namespace Kr3G
 {
-    public static class LoggerF
+    public static class LogManager
     {
-        public static Logger logger { get; } = LogManager.GetCurrentClassLogger();
+        public static Logger logger { get; } = NLog.LogManager.GetCurrentClassLogger();
 
-        public static void  ConfInit()
+        public static void  ConfInit(string path )
         {
             var configuration = new NLog.Config.LoggingConfiguration();
-            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = ConfigurationManager.AppSettings["LogPath"] + "/logs/${shortdate}.log" };
+            var q = ConfigurationManager.AppSettings["LogPath"];
+            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = path + "/" + "logs/${shortdate}.log" };
             logfile.Layout = "${longdate} {uppercase:${level}} ${message}";
 
             configuration.AddRule(NLog.LogLevel.Trace, NLog.LogLevel.Fatal, logfile);

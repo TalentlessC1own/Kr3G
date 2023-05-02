@@ -64,10 +64,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="C:\Users\User\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config">
+    <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="NLog.config">
+    <None Update="C:\Users\User\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

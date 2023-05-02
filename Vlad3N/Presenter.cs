@@ -69,7 +69,7 @@ namespace Kr3G
             }
             catch (Exception ex)
             {
-                LoggerF.logger.Error(ex);
+                LogManager.logger.Error(ex);
 
                 messageService.ShowError("Close the file before changing!");
             }

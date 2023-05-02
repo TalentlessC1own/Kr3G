@@ -14,19 +14,25 @@ namespace Kr3G
         [STAThread]
         static void Main()
         {
+            
+            
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            using (var scope = PrepareContainer().BeginLifetimeScope()) 
+            
+            using( var scope = PrepareContainer().BeginLifetimeScope())
             {
+                var settingManager = scope.Resolve<ISettingManager>();
+                settingManager.ApplySetting();
                 var presenter = scope.Resolve<IPresenter>();
+                
+                
+                
                 presenter.Run();
-            }
+                LogManager.logger.Error("qwe");
 
-            
-
-            
+            };
         }
         private static IContainer PrepareContainer()
         {
